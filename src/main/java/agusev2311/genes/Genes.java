@@ -1,11 +1,14 @@
 package agusev2311.genes;
 
+import org.bukkit.*;
+
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import java.util.Random;
@@ -16,7 +19,12 @@ public final class Genes extends JavaPlugin implements @NotNull Listener {
 
     @Override
     public void onEnable() {
+        createNewDimension("world_paradise");
         getServer().getPluginManager().registerEvents(this, this);
+    }
+
+    private void createNewDimension(String name) {
+        this.getServer().createWorld(new org.bukkit.WorldCreator("world_paradise").generator(new CustomWorldGenerator()));
     }
 
     @EventHandler
@@ -24,7 +32,6 @@ public final class Genes extends JavaPlugin implements @NotNull Listener {
         Random rand = new Random();
         double scale = (rand.nextInt(15) + 1) / 10.0;
         event.getPlayer().getAttribute(Attribute.GENERIC_SCALE).setBaseValue(scale);
-//        event.getPlayer().sendMessage("Now your size is " + scale * 1.9);
         event.getPlayer().getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(rand.nextInt(3) + 1);
         event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue((rand.nextInt(20) + 1) / 10.0);
         event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(rand.nextInt(8) + 1);
