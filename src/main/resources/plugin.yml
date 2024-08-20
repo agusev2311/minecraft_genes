@@ -1,0 +1,4 @@
+name: genes
+version: '1.0-SNAPSHOT'
+main: agusev2311.genes.Genes
+api-version: '1.21'
