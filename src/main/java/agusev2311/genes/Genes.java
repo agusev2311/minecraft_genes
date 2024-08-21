@@ -31,11 +31,17 @@ public final class Genes extends JavaPlugin implements @NotNull Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Random rand = new Random();
         double scale = (rand.nextInt(15) + 1) / 10.0;
-        event.getPlayer().getAttribute(Attribute.GENERIC_SCALE).setBaseValue(scale);
-        event.getPlayer().getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(rand.nextInt(3) + 1);
-        event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue((rand.nextInt(20) + 1) / 10.0);
-        event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(rand.nextInt(8) + 1);
-        event.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(rand.nextInt(30) + 1);
+        event.getPlayer().getAttribute(Attribute.GENERIC_SCALE).setBaseValue(scale); // 1
+        event.getPlayer().getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(scale * 0.42); // 0.42
+        event.getPlayer().getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(scale * 0.1); // 0.1
+        double armor = rand.nextInt(3) + 1;
+        double attack_damage = (rand.nextInt(20) + 1) / 10.0;
+        double attack_speed = rand.nextInt(8) + 1;
+        double max_health = rand.nextInt(30) + 1;
+        event.getPlayer().getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(armor); // 0
+        event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(attack_damage); // 1
+        event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(attack_speed); // 4
+        event.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(max_health); // 20
     }
 
     @EventHandler
