@@ -28,7 +28,7 @@ public final class Genes extends JavaPlugin implements @NotNull Listener {
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
         Random rand = new Random();
         double scale = (rand.nextInt(15) + 1) / 10.0;
         event.getPlayer().getAttribute(Attribute.GENERIC_SCALE).setBaseValue(scale); // 1
